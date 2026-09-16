@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroCopy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f7f7f7;
+        }
 
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #container {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 12px;
+            font-size: 16px;
+            background: #0078ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:active {
+            background: #005fcc;
+        }
+
+        #status {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 15px;
+            color: green;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>MicroCopy</h1>
+
+        <textarea id="textInput" placeholder="Type or paste text here..."></textarea>
+
+        <button onclick="copyText()">Copy to Clipboard</button>
+
+        <div id="status">Copied!</div>
+    </div>
+
+    <script>
+        function copyText() {
+            const text = document.getElementById("textInput").value;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const status = document.getElementById("status");
+                status.style.opacity = 1;
+
+                setTimeout(() => {
+                    status.style.opacity = 0;
+                }, 1200);
+            });
+        }
+    </script>
+
+</body>
+</html>
