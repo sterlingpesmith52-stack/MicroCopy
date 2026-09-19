@@ -1,94 +1,77 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MicroCopy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f7f7f7;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MicroCopy</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+    }
 
-        h1 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    .panel {
+        background: #e8e8e8;
+        padding: 16px;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-        #container {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 6px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: auto;
-        }
+    h2 {
+        margin: 0 0 12px 0;
+        text-align: left;
+    }
 
-        textarea {
-            width: 100%;
-            height: 120px;
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            resize: none;
-        }
+    #inputBox {
+        width: 100%;
+        padding: 12px 20px; /* right padding fixed */
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: white;
+        box-sizing: border-box;
+        margin-bottom: 16px;
+        text-align: left;
+    }
 
-        button {
-            width: 100%;
-            margin-top: 12px;
-            padding: 12px;
-            font-size: 16px;
-            background: #0078ff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    button {
+        padding: 10px 18px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        background: #0078ff;
+        color: white;
+        cursor: pointer;
+        display: inline-block; /* button only as wide as its text */
+        text-align: left;
+    }
 
-        button:active {
-            background: #005fcc;
-        }
-
-        #status {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 15px;
-            color: green;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-    </style>
+    button:active {
+        opacity: 0.85;
+    }
+</style>
 </head>
 <body>
 
-    <div id="container">
-        <h1>MicroCopy</h1>
+<div class="panel">
+    <h2>MicroCopy</h2>
 
-        <textarea id="textInput" placeholder="Type or paste text here..."></textarea>
+    <textarea id="inputBox" rows="4" placeholder="Type or paste text here..."></textarea>
 
-        <button onclick="copyText()">Copy to Clipboard</button>
+    <button onclick="copyText()">Copy to Clipboard</button>
+</div>
 
-        <div id="status">Copied!</div>
-    </div>
-
-    <script>
-        function copyText() {
-            const text = document.getElementById("textInput").value;
-
-            navigator.clipboard.writeText(text).then(() => {
-                const status = document.getElementById("status");
-                status.style.opacity = 1;
-
-                setTimeout(() => {
-                    status.style.opacity = 0;
-                }, 1200);
-            });
-        }
-    </script>
+<script>
+function copyText() {
+    const box = document.getElementById("inputBox");
+    const text = box.value;
+    navigator.clipboard.writeText(text);
+}
+</script>
 
 </body>
 </html>
