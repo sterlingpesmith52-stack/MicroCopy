@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MicroCopy</title>
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -15,11 +16,13 @@
     h2 {
         margin: 0 0 12px 0;
         text-align: left;
+        font-size: 22px;
+        font-weight: 600;
     }
 
     #inputBox {
         width: 100%;
-        padding: 12px 20px; /* right padding fixed */
+        padding: 12px 20px;
         font-size: 18px;
         border: 1px solid #ccc;
         border-radius: 6px;
@@ -27,6 +30,7 @@
         box-sizing: border-box;
         margin-bottom: 16px;
         text-align: left;
+        resize: none;
     }
 
     button {
@@ -46,11 +50,12 @@
     }
 </style>
 </head>
+
 <body>
 
 <h2>MicroCopy</h2>
 
-<textarea id="inputBox" rows="4" placeholder="Type or paste text here..."></textarea>
+<textarea id="inputBox" rows="6" placeholder="Type or paste text here..."></textarea>
 
 <button onclick="copyText()">Copy to Clipboard</button>
 
@@ -58,10 +63,12 @@
 function copyText() {
     const box = document.getElementById("inputBox");
     const text = box.value;
-    navigator.clipboard.writeText(text);
+
+    /* iPhone Chrome-safe copy method */
+    box.select();
+    document.execCommand("copy");
 }
 </script>
 
 </body>
 </html>
-
